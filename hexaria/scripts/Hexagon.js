@@ -54,7 +54,7 @@ class Hexagon {
   collide(el) {
     const distance = this.game.distance(this, el)
     const inside = distance < this.r * Math.sin(this.angle)
-    if (inside && this.game.number > this.number && this.color != (this.game.turn ? 'red' : 'blue') && !this.disabled) {
+    if (inside && !this.number && !this.disabled) {
       this.hover = true
     } else {
       this.hover = false
@@ -64,15 +64,22 @@ class Hexagon {
   click() {
     if (this.disabled) return
     if (this.game.number < this.number) return
-    if (this.color == (this.game.turn ? 'red' : 'blue')) return
+    if (this.number) return
     this.color = this.game.turn ? 'red' : 'blue'
     this.number = this.game.number
     this.audio.play()
     this.game.score = [0, 0]
     this.game.hexagons.forEach(hexagon => {
       const distance = this.game.distance(this, hexagon)
-      if (distance && distance < this.r * 2 && this.color == hexagon.color) {
-        hexagon.number++
+      if (distance && distance < this.r * 2 && hexagon.number) {
+        if (hexagon.color == (this.game.turn ? 'red' : 'blue')) {
+          hexagon.number++
+        }
+        if (hexagon.number < this.game.number && hexagon.color) {
+          hexagon.color = this.game.turn ? 'red' : 'blue'
+        }
+
+
       }
       this.game.score[hexagon.color == 'red' ? 0 : 1] += hexagon.number
       hexagon.hover = false
@@ -84,7 +91,8 @@ class Hexagon {
     this.game.current.number = this.game.number
     this.game.current.color = this.game.turn ? 'red' : 'blue'
     if (this.game.competitor == 'bot' && !this.game.turn) {
-      const available = this.game.hexagons.filter(item => item.number < this.game.number && !item.disabled && item.color !== (this.turn ? 'red' : 'blue'))
+      console.log(this.game.competitor)
+      const available = this.game.hexagons.filter(item => !item.disabled && !item.number)
       let indexRand = 0
       const random = Math.random() * (10 - 4) + 4
       for (let i = 0; i < random; i++) {
