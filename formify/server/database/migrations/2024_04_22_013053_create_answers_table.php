@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('response_id');
             $table->unsignedBigInteger('question_id');
+            $table->text('value');
             $table->foreign('response_id')->references('id')->on('responses');
-            $table->foreign('question_id')->references('id')->on('questions'); 
+            $table->foreign('question_id')->references('id')->on('questions');
         });
     }
 

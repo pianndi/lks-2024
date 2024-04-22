@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('responses', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->unsignedBigInteger('form_id');
+            $table->unsignedBigInteger('user_id');
+            $table->dateTime('date');
+            $table->foreign('form_id')->references('id')->on('forms');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
