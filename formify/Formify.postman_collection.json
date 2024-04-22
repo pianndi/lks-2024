@@ -1,0 +1,431 @@
+{
+	"info": {
+		"_postman_id": "c2809071-e6c0-4799-aa91-123d7bd321d7",
+		"name": "Formify",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34140293"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"user1@webtech.id\",\r\n    \"password\":\"password1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "user1@webtech.id",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "password1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer 1|WJ6CmX7b6PFWE0DNj2iNCWE3yxD3V1qKhD0xF8dP90f763e2",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/auth/logout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Forms",
+			"item": [
+				{
+					"name": "Get all forms",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/forms",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"forms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get details form",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/forms/ex-omnis-in-consequuntur-consequuntur-ratione-consectetur-repudiandae",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"forms",
+								"ex-omnis-in-consequuntur-consequuntur-ratione-consectetur-repudiandae"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create form",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer 1|dChK9OIHJNpklcfY6Xz3mjTjctBZvghYkmIHXN1Re59bdca7",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Stacks of webs tech members",
+									"type": "text"
+								},
+								{
+									"key": "slug",
+									"value": "member-stacks",
+									"type": "text"
+								},
+								{
+									"key": "alowed_domains[0]",
+									"value": "webtech.id",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "to colect favorite stacks",
+									"type": "text"
+								},
+								{
+									"key": "limit_one_response",
+									"value": "true",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/forms",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"forms"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Questions",
+			"item": [
+				{
+					"name": "Get details form Copy",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/forms/eaque-est-dolor-rerum-hic/questions",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"forms",
+								"eaque-est-dolor-rerum-hic",
+								"questions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete question",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/forms/eaque-est-dolor-rerum-hic/questions/101",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"forms",
+								"eaque-est-dolor-rerum-hic",
+								"questions",
+								"101"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create question",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Most Favourite JS Framework",
+									"type": "text"
+								},
+								{
+									"key": "choice_type",
+									"value": "multiple choice",
+									"type": "text"
+								},
+								{
+									"key": "choices[0]",
+									"value": "React JS",
+									"type": "text"
+								},
+								{
+									"key": "choices[1]",
+									"value": "Vue JS",
+									"type": "text"
+								},
+								{
+									"key": "choices[2]",
+									"value": "Angular JS",
+									"type": "text"
+								},
+								{
+									"key": "choices[3]",
+									"value": "Svelte",
+									"type": "text"
+								},
+								{
+									"key": "is_required",
+									"value": "true",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/forms/eaque-est-dolor-rerum-hic/questions",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"forms",
+								"eaque-est-dolor-rerum-hic",
+								"questions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Response",
+			"item": [
+				{
+					"name": "create response",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"answers\":[\r\n        {\r\n            \"question_id\": 24,\r\n            \"value\":\"testng\"\r\n        },\r\n        {\r\n            \"question_id\": 53,\r\n            \"value\":\"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANanjayyy\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/forms/velit-dolorem-autem-qui-mollitia-sequi-et-consequatur-nam/responses",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"forms",
+								"velit-dolorem-autem-qui-mollitia-sequi-et-consequatur-nam",
+								"responses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all response",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"answers\":[\r\n        {\r\n            \"question_id\": 24\r\n\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/forms/velit-dolorem-autem-qui-mollitia-sequi-et-consequatur-nam/responses",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"forms",
+								"velit-dolorem-autem-qui-mollitia-sequi-et-consequatur-nam",
+								"responses"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
