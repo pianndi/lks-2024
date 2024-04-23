@@ -66,7 +66,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer 1|WJ6CmX7b6PFWE0DNj2iNCWE3yxD3V1qKhD0xF8dP90f763e2",
+								"value": "Bearer {{token}}",
 								"type": "text"
 							}
 						],
@@ -133,13 +133,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{url}}/forms/ex-omnis-in-consequuntur-consequuntur-ratione-consectetur-repudiandae",
+							"raw": "{{url}}/forms/member-stacks",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"forms",
-								"ex-omnis-in-consequuntur-consequuntur-ratione-consectetur-repudiandae"
+								"member-stacks"
 							]
 						}
 					},
@@ -157,7 +157,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer 1|dChK9OIHJNpklcfY6Xz3mjTjctBZvghYkmIHXN1Re59bdca7",
+								"value": "Bearer {{token}}",
 								"type": "text"
 							}
 						],
@@ -175,7 +175,7 @@
 									"type": "text"
 								},
 								{
-									"key": "alowed_domains[0]",
+									"key": "allowed_domains[0]",
 									"value": "webtech.id",
 									"type": "text"
 								},
@@ -209,36 +209,6 @@
 			"name": "Questions",
 			"item": [
 				{
-					"name": "Get details form Copy",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Authorization",
-								"value": "Bearer {{token}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{url}}/forms/eaque-est-dolor-rerum-hic/questions",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"forms",
-								"eaque-est-dolor-rerum-hic",
-								"questions"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "delete question",
 					"request": {
 						"method": "DELETE",
@@ -255,15 +225,15 @@
 							}
 						],
 						"url": {
-							"raw": "{{url}}/forms/eaque-est-dolor-rerum-hic/questions/101",
+							"raw": "{{url}}/forms/member-stacks/questions/1",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"forms",
-								"eaque-est-dolor-rerum-hic",
+								"member-stacks",
 								"questions",
-								"101"
+								"1"
 							]
 						}
 					},
@@ -326,13 +296,13 @@
 							]
 						},
 						"url": {
-							"raw": "{{url}}/forms/eaque-est-dolor-rerum-hic/questions",
+							"raw": "{{url}}/forms/member-stacks/questions",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"forms",
-								"eaque-est-dolor-rerum-hic",
+								"member-stacks",
 								"questions"
 							]
 						}
@@ -358,11 +328,16 @@
 								"key": "Authorization",
 								"value": "Bearer {{token}}",
 								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"answers\":[\r\n        {\r\n            \"question_id\": 24,\r\n            \"value\":\"testng\"\r\n        },\r\n        {\r\n            \"question_id\": 53,\r\n            \"value\":\"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANanjayyy\"\r\n        }\r\n    ]\r\n}",
+							"raw": "{\r\n\"answers\": [\r\n{\"question_id\":5,\"value\":\"React JS\"},\r\n{\"question_id\":6,\"value\":\"Vue JS\"}\r\n]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -370,13 +345,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/forms/velit-dolorem-autem-qui-mollitia-sequi-et-consequatur-nam/responses",
+							"raw": "{{url}}/forms/member-stacks/responses",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"forms",
-								"velit-dolorem-autem-qui-mollitia-sequi-et-consequatur-nam",
+								"member-stacks",
 								"responses"
 							]
 						}
@@ -404,7 +379,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"answers\":[\r\n        {\r\n            \"question_id\": 24\r\n\r\n        }\r\n    ]\r\n}",
+							"raw": "{\r\n    \"answers\":[\r\n        {\r\n            \"question_id\": 5\r\n\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -412,13 +387,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/forms/velit-dolorem-autem-qui-mollitia-sequi-et-consequatur-nam/responses",
+							"raw": "{{url}}/forms/member-stacks/responses",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"forms",
-								"velit-dolorem-autem-qui-mollitia-sequi-et-consequatur-nam",
+								"member-stacks",
 								"responses"
 							]
 						}

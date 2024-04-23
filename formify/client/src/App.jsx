@@ -1,29 +1,29 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation, Outlet } from "react-router-dom";
 import Nav from "./components/Nav";
-import { useState } from "react";
+import { useAuth } from "./components/auth";
+import Login from "./pages/Login";
 
 export default function App() {
-  const [user, setUser] = useState(null);
-
   return (
     <>
-      <Nav user={user} setUser={setUser}></Nav>
-
+      <Nav></Nav>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <ProtectedRoute user={user}>
-              <h1>Home</h1>
-            </ProtectedRoute>
-          }
-        />
-        <Route path="/login" element={<h1>Login</h1>} />
+        <Route element={<ProtectedRoute />}>
+          <Route element={<h1>Home</h1>} path="/" />
+        </Route>
+        <Route path="/login" element={<Login />} />
       </Routes>
     </>
   );
 }
 
-const ProtectedRoute = ({ user, children }) => {
-  return user ? children : <Navigate to="/login" />;
+const ProtectedRoute = ({ children }) => {
+  const { user } = useAuth();
+  const location = useLocation();
+
+  return user ? (
+    <Outlet />
+  ) : (
+    <Navigate replace to="/login" state={{ from: location }} />
+  );
 };
