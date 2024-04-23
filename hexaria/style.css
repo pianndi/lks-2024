@@ -20,35 +20,42 @@ img {
 }
 
 .container {
+  width: 100%;
   position: relative;
   display: grid;
   grid-template-columns: 700px auto;
   max-width: 1000px;
   height: 600px;
   border: 2px solid silver;
-
 }
 
 canvas {
   border-right: 2px solid silver;
-
 }
 
 select,
 input,
-button {
+button,
+a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
   background-color: rgb(17, 17, 17);
   color: silver;
   border: 2px solid silver;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
-
 }
 
-button:hover {
+button:hover,
+a:hover {
   background-color: silver;
   color: rgb(17, 17, 17);
   cursor: pointer;
+}
+input:disabled {
+  background-color: darkgray;
 }
 
 label {
@@ -58,7 +65,6 @@ label {
   gap: 1rem;
   width: 100%;
 }
-
 
 .leaderboard {
   display: flex;
@@ -120,7 +126,6 @@ label {
   position: relative;
 }
 
-
 .home {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -157,4 +162,13 @@ label {
 
 .hide {
   display: none;
+}
+
+.menu {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
 }

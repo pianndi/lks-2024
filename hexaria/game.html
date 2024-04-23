@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hexaria</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="icon.png" type="image/x-icon" />
+  </head>
+
+  <body>
+    <div class="menu">
+      <a href="index.html">&leftarrow; Home</a>
+      <img src="logo.png" alt="logo" class="logo" />
+      <button onclick="main()">&ReverseElement; Restart</button>
+    </div>
+    <div class="container game">
+      <div class="bg">
+        <div class="alert detail hide" id="detailDialog">
+          <div class="close">&times;</div>
+        </div>
+      </div>
+      <div class="bg">
+        <div class="alert over hide">
+          <h2>Game Over</h2>
+          <button onclick="main()">Restart</button>
+        </div>
+      </div>
+      <canvas id="cvs" width="700px" height="600px"></canvas>
+      <div class="leaderboard">
+        <h2>Leaderboard</h2>
+        <label for="">
+          Sort by
+          <select name="Sort" id="sort">
+            <option value="date">Date</option>
+            <option value="score">score</option>
+          </select>
+        </label>
+        <div class="body" id="bodyLeader">
+          <div class="item">
+            <span><b>Nama</b> vs <b>bOT</b></span>
+            <span>453 - 564</span>
+            <button>Detail</button>
+          </div>
+          <div class="item">
+            <span><b>Nama</b> vs <b>bOT</b></span>
+            <span>453 - 564</span>
+            <button>Detail</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="scripts/Hexagon.js"></script>
+    <script src="scripts/main.js"></script>
+  </body>
+</html>

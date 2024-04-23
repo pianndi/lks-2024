@@ -144,18 +144,13 @@ class Game {
 }
 // input
 const sort = document.getElementById("sort");
-const player1 = document.getElementById("player1");
-const player2 = document.getElementById("player2");
-const level = document.getElementById("level");
-const competitor = document.getElementById("competitor");
 
 //element
 const bodyLeader = document.getElementById("bodyLeader");
 const alertDialog = document.querySelector(".alert.over");
-const welcome = document.querySelector(".container.home");
 const gameboard = document.querySelector(".container.game");
 function main() {
-  welcome.classList.add("hide");
+  const urlParam = new URLSearchParams(window.location.search);
   gameboard.classList.remove("hide");
   fetchLeaderboard();
   alertDialog.classList.add("hide");
@@ -163,11 +158,13 @@ function main() {
   canvas.width = 700;
   canvas.height = 600;
   const ctx = canvas.getContext("2d");
+
+  // config
   const game = new Game(canvas, ctx);
-  game.level = parseInt(level.value);
-  game.player1 = player1.value;
-  game.player2 = player2.value;
-  game.competitor = competitor.value;
+  game.level = parseInt(urlParam.get("level")) || 4;
+  game.competitor = urlParam.get("competitor") || "bot";
+  game.player1 = urlParam.get("player1") || "Player";
+  game.player2 = urlParam.get("player2") || "Bot";
   game.generateHexagons();
 
   function animate() {
@@ -182,7 +179,7 @@ function main() {
   }
   requestAnimationFrame(animate);
 }
-
+main();
 function fetchLeaderboard() {
   const score =
     JSON.parse(localStorage.getItem("hex-leaderboard")) || new Array();
@@ -207,20 +204,6 @@ function fetchLeaderboard() {
   if (!score.length) html += "<h3>Kosong</h3>";
   bodyLeader.innerHTML = html;
   return score;
-}
-competitor.addEventListener("change", (e) => {
-  if (e.target.value == "bot") {
-    player2.value = "Bot";
-    player2.disabled = true;
-  } else {
-    player2.disabled = false;
-    player2.value = "";
-  }
-});
-function play() {
-  if (player1.value.trim() && player2.value.trim()) {
-    main();
-  }
 }
 
 function detail(index) {

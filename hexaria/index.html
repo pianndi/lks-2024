@@ -1,90 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hexaria</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="shortcut icon" href="icon.png" type="image/x-icon">
-</head>
-
-<body>
-  <img src="logo.png" alt="logo" class="logo">
-  <div class="container home">
-    <div class="main">
-      <h1>Hexaria</h1>
-      <label for="">
-        Player 1
-        <input type="text" id="player1" placeholder="Input player 1 name's">
-      </label>
-      <label for="">
-        Play with
-        <select name="competitor" id="competitor">
-          <option value="bot">Bot</option>
-          <option value="player">Player</option>
-        </select>
-      </label>
-      <label for="">
-        Player 2
-        <input type="text" id="player2" placeholder="Input player 2 name's" value="Bot" disabled>
-      </label>
-      <label for="">
-        Level
-        <select name="level" id="level">
-          <option value="4">Easy</option>
-          <option value="6">Medium</option>
-          <option value="8">Hard</option>
-        </select>
-      </label>
-      <button onclick="play()">Play</button>
-    </div>
-    <div class="instruction">
-      <h3>instruction</h3>
-      <p>1. Fill the empty hexagon with your color</p>
-      <p>2. Take over opponents Hexagon</p>
-      <p>3. Be the most rich</p>
-      <p>3. Fill all hexagon to end the game</p>
-    </div>
-  </div>
-  <div class="container game hide">
-    <div class="bg">
-      <div class="alert detail hide" id="detailDialog">
-        <div class="close">&times;</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hexaria - Menu</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container home">
+      <form class="main" method="get" action="game.html">
+        <img src="logo.png" alt="logo" class="logo" />
+        <label for="">
+          Player 1
+          <input
+            name="player1"
+            required
+            type="text"
+            id="player1"
+            placeholder="Input player 1 name's"
+          />
+        </label>
+        <label for="">
+          Play with
+          <select name="competitor" id="competitor">
+            <option value="bot">Bot</option>
+            <option value="player">Player</option>
+          </select>
+        </label>
+        <label for="">
+          Player 2
+          <input
+            name="player2"
+            type="text"
+            id="player2"
+            placeholder="Input player 2 name's"
+            value="Bot"
+            disabled
+            required
+          />
+        </label>
+        <label for="">
+          Level
+          <select name="level" id="level">
+            <option value="4">Easy</option>
+            <option value="6">Medium</option>
+            <option value="8">Hard</option>
+          </select>
+        </label>
+        <button type="submit">Play</button>
+      </form>
+      <div class="instruction">
+        <h3>instruction</h3>
+        <p>1. Fill the empty hexagon with your color</p>
+        <p>2. Take over opponents Hexagon</p>
+        <p>3. Be the most rich</p>
+        <p>3. Fill all hexagon to end the game</p>
       </div>
     </div>
-    <div class="bg">
-      <div class="alert over hide">
-        <h2>Game Over</h2>
-        <button onclick="main()">Restart</button>
-      </div>
-    </div>
-    <canvas id="cvs" width="700px" height="600px"></canvas>
-    <div class="leaderboard">
-      <h2>Leaderboard</h2>
-      <label for="">
-        Sort by
-        <select name="Sort" id="sort">
-          <option value="date">Date</option>
-          <option value="score">score</option>
-        </select>
-      </label>
-      <div class="body" id="bodyLeader">
-        <div class="item">
-          <span><b>Nama</b> vs <b>bOT</b></span>
-          <span>453 - 564</span>
-          <button>Detail</button>
-        </div>
-        <div class="item">
-          <span><b>Nama</b> vs <b>bOT</b></span>
-          <span>453 - 564</span>
-          <button>Detail</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <script src="scripts/Hexagon.js"></script>
-  <script src="scripts/main.js"></script>
-</body>
-
+    <script>
+      document.getElementById("competitor").onchange = (e) => {
+        if (e.target.value == "bot") {
+          document.getElementById("player2").value = "Bot";
+          document.getElementById("player2").disabled = true;
+        } else {
+          document.getElementById("player2").value = "";
+          document.getElementById("player2").disabled = false;
+        }
+      };
+    </script>
+  </body>
 </html>
