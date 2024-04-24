@@ -43,11 +43,11 @@ class ResponseController extends Controller
                 'message' => 'Form not found'
             ], 404);
         }
-        if ($form->allowedDomains()->where('domain', 'like', explode('@', $request->user()->email)[1])->count() < 1) {
-            return response()->json([
-                'message' => 'forbidden access'
-            ], 403);
-        }
+        // if ($form->allowedDomains()->where('domain', 'like', explode('@', $request->user()->email)[1])->count() < 1) {
+        //     return response()->json([
+        //         'message' => 'forbidden access'
+        //     ], 403);
+        // }
         if ($form->limit_one_response && $form->responses()->where('user_id', $request->user()->id)->count() > 0) {
             return response()->json([
                 'message' => 'You cannot submit form twice'

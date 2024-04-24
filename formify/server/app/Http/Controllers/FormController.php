@@ -11,7 +11,7 @@ class FormController extends Controller
 {
     public function index(Request $request)
     {
-        $form = Form::all();
+        $form = Form::where('creator_id', $request->user()->id)->get();
         return response()->json([
             'message' => 'Get all forms success',
             'forms' => $form

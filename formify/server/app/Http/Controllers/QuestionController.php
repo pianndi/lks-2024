@@ -23,8 +23,8 @@ class QuestionController extends Controller
         }
         $rules = [
             'name' => 'required',
-            'choice_type' => 'required|in:short answer,paragraph,date,time,multiple choice,dropdown,checkboxes',
-            'choices' => 'array|required_if:choice_type,multiple choice,dropdown'
+            'choice_type' => 'required|in:short answer,paragraph,date,multiple choice,dropdown,checkboxes',
+            'choices' => 'array|required_if:choice_type,multiple choice,dropdown,checkboxes'
         ];
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {

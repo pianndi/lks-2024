@@ -1,29 +1,37 @@
-import { Routes, Route, Navigate, useLocation, Outlet } from "react-router-dom";
-import Nav from "./components/Nav";
-import { useAuth } from "./components/auth";
+import { Navigate, Outlet, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
 import Login from "./pages/Login";
+import Nav from "./components/Nav";
+import { useAuth } from "./utils/auth";
+import EditForm from "./pages/EditForm";
+import ResponseForm from "./pages/ResponseForm";
 
 export default function App() {
   return (
     <>
-      <Nav></Nav>
-      <Routes>
-        <Route element={<ProtectedRoute />}>
-          <Route element={<h1>Home</h1>} path="/" />
-        </Route>
-        <Route path="/login" element={<Login />} />
-      </Routes>
+      <Nav />
+      <div className="container py-4">
+        <Routes>
+          <Route element={<ProtectedRoutes />}>
+            <Route path="/" element={<Home />} />
+            <Route path=":slug" element={<EditForm />} />
+            <Route path=":slug/responses" element={<ResponseForm />} />
+          </Route>
+          <Route path="/login" element={<Login />} />
+          <Route path="*" element={<h1>Not found</h1>} />
+        </Routes>
+      </div>
     </>
   );
 }
 
-const ProtectedRoute = ({ children }) => {
+const ProtectedRoutes = () => {
   const { user } = useAuth();
-  const location = useLocation();
-
   return user ? (
     <Outlet />
+  ) : user?.loading ? (
+    "Loading..."
   ) : (
-    <Navigate replace to="/login" state={{ from: location }} />
+    <Navigate to="/login" replace />
   );
 };
