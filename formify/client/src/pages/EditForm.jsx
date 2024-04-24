@@ -5,11 +5,10 @@ import axios from "axios";
 import Choice from "../components/Choice";
 import DeleteButton from "../components/DeleteButton";
 
-export default function EditForm() {
+export default function EditForm({ user }) {
   const { slug } = useParams();
   const [data, setData] = useState(null);
   const [message, setMessage] = useState(null);
-  const { user } = useAuth();
   const [choices, setChoices] = useState([""]);
   const [choiceType, setChoiceType] = useState("short answer");
   const [errors, setErrors] = useState(null);
@@ -161,27 +160,27 @@ export default function EditForm() {
                 {["multiple choice", "checkboxes", "dropdown"].includes(
                   choiceType
                 ) && (
-                  <div className="form-group list-group-item">
-                    <label htmlFor="choice_type" className="form-label">
-                      Choices
-                    </label>
-                    {choices.map((item, i) => (
-                      <input
-                        value={item}
-                        key={i}
-                        type="text"
-                        className={
-                          "form-control " + (errors?.choices && "is-invalid")
-                        }
-                        name={`choices[${i}]`}
-                        placeholder={`Input choice ${i + 1}`}
-                        onChange={(e) => addAnswer(e.target.value, i)}
-                        disabled={loading}
-                      />
-                    ))}
-                    <div className="invalid-feedback">{errors?.choices}</div>
-                  </div>
-                )}
+                    <div className="form-group list-group-item">
+                      <label htmlFor="choice_type" className="form-label">
+                        Choices
+                      </label>
+                      {choices.map((item, i) => (
+                        <input
+                          value={item}
+                          key={i}
+                          type="text"
+                          className={
+                            "form-control " + (errors?.choices && "is-invalid")
+                          }
+                          name={`choices[${i}]`}
+                          placeholder={`Input choice ${i + 1}`}
+                          onChange={(e) => addAnswer(e.target.value, i)}
+                          disabled={loading}
+                        />
+                      ))}
+                      <div className="invalid-feedback">{errors?.choices}</div>
+                    </div>
+                  )}
               </ul>
             </div>
             <div className="card-footer">

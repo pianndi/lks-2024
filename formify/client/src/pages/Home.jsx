@@ -23,6 +23,10 @@ export default function Home() {
   }, [user]);
   return (
     <>
+      <div className="d-flex justify-content-between align-items-center">
+        <h1>Home</h1>
+        <Link to='/form/create' className="btn btn-primary">Create New Form</Link>
+      </div>
       <table className="table">
         <thead>
           <tr>

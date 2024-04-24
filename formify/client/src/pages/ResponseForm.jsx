@@ -1,27 +1,29 @@
 import React, { useEffect, useState } from "react";
-import { useAuth } from "../utils/auth";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import Choice from "../components/Choice";
 
-export default function ResponseForm() {
+export default function ResponseForm({ user }) {
   const { slug } = useParams();
   const [data, setData] = useState(null);
   const [message, setMessage] = useState(null);
-  const { user } = useAuth();
+  const [success, setSuccess] = useState(null)
+
   const fetchForm = async () => {
     try {
       const { data } = await axios.get(
         "http://localhost:8000/api/v1/forms/" + slug,
         {
           headers: {
+            Accept: 'application/json',
             Authorization: "Bearer " + user.accessToken,
           },
         }
       );
       setData(data.form);
     } catch ({ response }) {
-      if (response.status !== 401) {
+      if (response.status != 401) {
+        console.log(response)
         setMessage(response.data.message);
       }
     }
@@ -39,22 +41,23 @@ export default function ResponseForm() {
           },
         }
       );
-      console.log(data);
-    } catch ({ response }) {
-      console.log(response);
+      setSuccess(data)
+    } catch (err) {
+      console.log(err)
+      setMessage(response.data.message)
     }
   };
   useEffect(() => {
     fetchForm();
   }, [user]);
 
-  if (data == null) return <h1>Loading...</h1>;
   if (message)
     return (
       <div className="alert alert-danger" role="alert">
         Error: {message}
       </div>
     );
+  if (data == null) return <h1>Loading...</h1>;
 
   return (
     <form onSubmit={handleSubmit} className="card">

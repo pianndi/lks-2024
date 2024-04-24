@@ -38,10 +38,12 @@ class FormController extends Controller
             'limit_one_response' => $request->limit_one_response == 'true',
             'creator_id' => $request->user()->id
         ]);
-        foreach ($request->input('allowed_domains') as $domain) {
-            $form->allowedDomains()->create([
-                'domain' => $domain
-            ]);
+        foreach ($request->input('allowed_domains', []) as $domain) {
+            if (!empty($domain)) {
+                $form->allowedDomains()->create([
+                    'domain' => $domain
+                ]);
+            }
         }
         return response()->json([
             'message' => 'Create form success',
@@ -54,6 +56,11 @@ class FormController extends Controller
         if (!$form) return response()->json([
             'message' => 'Form not found'
         ], 404);
+        if ($form->allowedDomains()->count() > 0 && $form->creator_id != $request->user()->id && $form->allowedDomains()->where('domain', 'like', explode('@', $request->user()->email)[1])->count() < 1) {
+            return response()->json([
+                'message' => 'Forbidden access'
+            ], 403);
+        }
         $formated = $form->toArray();
         $formated['allowed_domains'] = $form->allowedDomains->map(fn ($item) => $item->domain);
         return response()->json([

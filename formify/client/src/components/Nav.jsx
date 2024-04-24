@@ -1,10 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { useAuth } from "../utils/auth";
 import axios from "axios";
 
-export default function Nav() {
-  const { user, logout } = useAuth();
+export default function Nav({ user, logout }) {
   const handleLogout = async () => {
     await axios.post(
       "http://localhost:8000/api/v1/auth/logout",
@@ -23,7 +21,7 @@ export default function Nav() {
     <nav className="navbar navbar-expand-sm bg-primary" data-bs-theme="dark">
       <div className="container-fluid">
         <a className="navbar-brand" href="#">
-          Navbar
+          Formify
         </a>
         <button
           className="navbar-toggler"

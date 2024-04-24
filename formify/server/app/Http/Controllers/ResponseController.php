@@ -21,9 +21,9 @@ class ResponseController extends Controller
                 'message' => 'Forbidden access'
             ], 403);
         }
-        $formated = $form->responses->map(function ($response) {
+        $formated = $form->responses->map(function ($response) use ($form) {
             return [
-                'date' => 'test',
+                'date' => $form->date,
                 'user' => $response->user->only(['id', 'name', 'email', 'email_verified_at']),
                 'answers' => $response->answers->map(function ($answer) {
                     return [$answer->question->name => $answer->value];
@@ -43,11 +43,11 @@ class ResponseController extends Controller
                 'message' => 'Form not found'
             ], 404);
         }
-        // if ($form->allowedDomains()->where('domain', 'like', explode('@', $request->user()->email)[1])->count() < 1) {
-        //     return response()->json([
-        //         'message' => 'forbidden access'
-        //     ], 403);
-        // }
+        if ($form->allowedDomains()->count() > 0 && $form->creator_id != $request->user()->id && $form->allowedDomains()->where('domain', 'like', explode('@', $request->user()->email)[1])->count() < 1) {
+            return response()->json([
+                'message' => 'forbidden access'
+            ], 403);
+        }
         if ($form->limit_one_response && $form->responses()->where('user_id', $request->user()->id)->count() > 0) {
             return response()->json([
                 'message' => 'You cannot submit form twice'
@@ -64,6 +64,7 @@ class ResponseController extends Controller
             ], 422);
         }
         $response = $form->responses()->create([
+            'date' => now(),
             'user_id' => $request->user()->id,
         ]);
         foreach ($request->input('answers') as $answer) {
