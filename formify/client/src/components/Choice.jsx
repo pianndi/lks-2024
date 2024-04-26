@@ -1,6 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 export default function Choice({ type, choices, index, required }) {
+  const [checkboxes, setCheckbox] = useState([]);
+
+  const handleCheck = (checked, value, i) => {
+    const checkArray = [...checkboxes];
+    if (checked) {
+      checkArray[i] = value;
+    } else {
+      checkArray.splice(i);
+    }
+    setCheckbox(checkArray);
+  };
+
   if (type == "short answer") {
     return (
       <input
@@ -68,16 +80,22 @@ export default function Choice({ type, choices, index, required }) {
     );
   } else if (type == "checkboxes") {
     const jawaban = choices.split(",");
+
     return (
       <ul className="list-group">
+        <input
+          type="hidden"
+          value={checkboxes.filter((item) => item).join(",")}
+          name={`answers[${index}][value]`}
+        />
         {jawaban.map((item, key) => (
           <li key={key} className="list-group-item">
             <input
               id={item + key + index}
               type="checkbox"
               className="form-check-input"
-              name={`answers[${index}][value]`}
               value={item}
+              onChange={(e) => handleCheck(e.target.checked, item, key)}
             />
             <label
               htmlFor={item + key + index}

@@ -4,8 +4,9 @@ import Login from "./pages/Login";
 import Nav from "./components/Nav";
 import { useAuth } from "./utils/auth";
 import EditForm from "./pages/EditForm";
-import ResponseForm from "./pages/ResponseForm";
+import AttemptForm from "./pages/AttemptForm";
 import CreateForm from "./pages/CreateForm";
+import ResponseForm from "./pages/ResponseForm";
 
 export default function App() {
   const { user, logout } = useAuth();
@@ -17,7 +18,11 @@ export default function App() {
           <Route element={<ProtectedRoutes />}>
             <Route path="/" element={<Home user={user} />} />
             <Route path=":slug" element={<EditForm user={user} />} />
-            <Route path=":slug/responses" element={<ResponseForm user={user} />} />
+            <Route path=":slug/attempt" element={<AttemptForm user={user} />} />
+            <Route
+              path=":slug/response"
+              element={<ResponseForm user={user} />}
+            />
             <Route path="form/create" element={<CreateForm user={user} />} />
           </Route>
           <Route path="/login" element={<Login />} />
@@ -30,6 +35,11 @@ export default function App() {
 
 const ProtectedRoutes = () => {
   const { user } = useAuth();
-  return (user?.loading ? <h1>Loading..</h1> : (user ? <Outlet /> : <Navigate to='login' replace />))
-
+  return user?.loading ? (
+    <h1>Loading..</h1>
+  ) : user ? (
+    <Outlet />
+  ) : (
+    <Navigate to="login" replace />
+  );
 };

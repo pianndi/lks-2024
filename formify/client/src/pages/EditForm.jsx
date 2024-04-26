@@ -69,6 +69,9 @@ export default function EditForm({ user }) {
         }
       );
       setQuestion(data);
+      setChoices([""]);
+      setChoiceType("short answer");
+      e.target.reset();
       fetchForm();
     } catch ({ response }) {
       setErrors(response.data.errors);
@@ -84,22 +87,22 @@ export default function EditForm({ user }) {
   if (data == null) return <h1>Loading...</h1>;
   return (
     <>
-      {question && (
-        <div className="alert alert-success" role="alert">
-          Success: {question.message}
-        </div>
-      )}
-      {message && (
-        <div className="alert alert-danger" role="alert">
-          Error: {message}
-        </div>
-      )}
       <div className="card">
         <div className="card-header">
           <h1>{data.name}</h1>
         </div>
         <div className="card-body">
           <p>{data.description}</p>
+          {question && (
+            <div className="alert alert-success" role="alert">
+              Success: {question.message}
+            </div>
+          )}
+          {message && (
+            <div className="alert alert-danger" role="alert">
+              Error: {message}
+            </div>
+          )}
           <form onSubmit={handleSubmit} className="card mb-4 py-2">
             <div className="card-header d-flex justify-content-between">
               <div className="form-group w-100">
@@ -160,27 +163,27 @@ export default function EditForm({ user }) {
                 {["multiple choice", "checkboxes", "dropdown"].includes(
                   choiceType
                 ) && (
-                    <div className="form-group list-group-item">
-                      <label htmlFor="choice_type" className="form-label">
-                        Choices
-                      </label>
-                      {choices.map((item, i) => (
-                        <input
-                          value={item}
-                          key={i}
-                          type="text"
-                          className={
-                            "form-control " + (errors?.choices && "is-invalid")
-                          }
-                          name={`choices[${i}]`}
-                          placeholder={`Input choice ${i + 1}`}
-                          onChange={(e) => addAnswer(e.target.value, i)}
-                          disabled={loading}
-                        />
-                      ))}
-                      <div className="invalid-feedback">{errors?.choices}</div>
-                    </div>
-                  )}
+                  <div className="form-group list-group-item">
+                    <label htmlFor="choice_type" className="form-label">
+                      Choices
+                    </label>
+                    {choices.map((item, i) => (
+                      <input
+                        value={item}
+                        key={i}
+                        type="text"
+                        className={
+                          "form-control " + (errors?.choices && "is-invalid")
+                        }
+                        name={`choices[${i}]`}
+                        placeholder={`Input choice ${i + 1}`}
+                        onChange={(e) => addAnswer(e.target.value, i)}
+                        disabled={loading}
+                      />
+                    ))}
+                    <div className="invalid-feedback">{errors?.choices}</div>
+                  </div>
+                )}
               </ul>
             </div>
             <div className="card-footer">

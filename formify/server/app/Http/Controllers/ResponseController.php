@@ -22,12 +22,14 @@ class ResponseController extends Controller
             ], 403);
         }
         $formated = $form->responses->map(function ($response) use ($form) {
+            $answers = [];
+            foreach ($response->answers as $key => $answer) {
+                $answers[$answer->question->name . $key] = $answer->value;
+            }
             return [
                 'date' => $form->date,
                 'user' => $response->user->only(['id', 'name', 'email', 'email_verified_at']),
-                'answers' => $response->answers->map(function ($answer) {
-                    return [$answer->question->name => $answer->value];
-                })
+                'answers' => $answers
             ];
         });
         return response()->json([

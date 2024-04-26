@@ -25,7 +25,9 @@ export default function Home() {
     <>
       <div className="d-flex justify-content-between align-items-center">
         <h1>Home</h1>
-        <Link to='/form/create' className="btn btn-primary">Create New Form</Link>
+        <Link to="/form/create" className="btn btn-primary">
+          Create New Form
+        </Link>
       </div>
       <table className="table">
         <thead>
@@ -42,13 +44,16 @@ export default function Home() {
                 <tr key={key}>
                   <td>{item.name}</td>
                   <td>
-                    <Link to={`${item.slug}/responses`}>
-                      http://localhost:8000/{item.slug}/responses
+                    <Link to={`${item.slug}/attempt`}>
+                      http://localhost:8000/{item.slug}/attempt
                     </Link>
                   </td>
                   <td>
                     <Link to={item.slug} className="btn btn-primary">
                       Edit
+                    </Link>
+                    <Link to={`${item.slug}/response`} className="btn btn-info">
+                      Responses
                     </Link>
                   </td>
                 </tr>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-sm bg-primary" data-bs-theme="dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Formify</a
+        ><button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link" href="/">Home</a
+            ><button class="nav-link">Logout</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="container py-4">
+      <div class="card">
+        <div class="card-header"><h1>Stacks of webs tech members</h1></div>
+        <div class="card-body">
+          <p>to colect favorite stacks</p>
+          <div class="alert alert-success" role="alert">
+            Success: Add question success
+          </div>
+          <form class="card mb-4 py-2">
+            <div class="card-header d-flex justify-content-between">
+              <div class="form-group w-100">
+                <label for="name" class="form-label">Create New Question</label
+                ><input
+                  type="text"
+                  name="name"
+                  id="name"
+                  class="form-control undefined"
+                  placeholder="Input question name"
+                />
+                <div class="invalid-feedback"></div>
+              </div>
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <div class="form-group list-group-item">
+                  <label for="choice_type" class="form-label">Choice Type</label
+                  ><select
+                    class="form-select undefined"
+                    name="choice_type"
+                    id="choice_type"
+                  >
+                    <option value="short answer">Short Answer</option>
+                    <option value="paragraph">Paragraph</option>
+                    <option value="date">date</option>
+                    <option value="multiple choice">Multiple Choice</option>
+                    <option value="dropdown">Dropdown</option>
+                    <option value="checkboxes">Checkboxes</option>
+                  </select>
+                  <div class="invalid-feedback"></div>
+                </div>
+                <div class="form-group list-group-item">
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    name="is_required"
+                    id="is_required"
+                  /><label for="is_required" class="form-check-label ms-2"
+                    >Required</label
+                  >
+                </div>
+              </ul>
+            </div>
+            <div class="card-footer">
+              <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+          </form>
+          <div class="card mb-4 py-2">
+            <div class="card-header d-flex justify-content-between">
+              <h4>Most Favourite JS Framework</h4>
+              <h3 class="text-danger">*</h3>
+              <button class="btn btn-danger">Delete</button>
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <label class="form-check-label"
+                    ><input
+                      class="form-check-input me-2"
+                      name="answers[0][value]"
+                      required=""
+                      type="radio"
+                      value="React JS"
+                    />React JS</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <label class="form-check-label"
+                    ><input
+                      class="form-check-input me-2"
+                      name="answers[0][value]"
+                      required=""
+                      type="radio"
+                      value="Vue JS"
+                    />Vue JS</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <label class="form-check-label"
+                    ><input
+                      class="form-check-input me-2"
+                      name="answers[0][value]"
+                      required=""
+                      type="radio"
+                      value="Angular JS"
+                    />Angular JS</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <label class="form-check-label"
+                    ><input
+                      class="form-check-input me-2"
+                      name="answers[0][value]"
+                      required=""
+                      type="radio"
+                      value="Svelte"
+                    />Svelte</label
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card mb-4 py-2">
+            <div class="card-header d-flex justify-content-between">
+              <h4>Testing</h4>
+              <h3 class="text-danger">*</h3>
+              <button class="btn btn-danger">Delete</button>
+            </div>
+            <div class="card-body">
+              <input
+                class="form-control"
+                type="text"
+                name="answers[1][value]"
+                required=""
+                placeholder="Input your answer"
+              />
+            </div>
+          </div>
+          <div class="card mb-4 py-2">
+            <div class="card-header d-flex justify-content-between">
+              <h4>Paragraph</h4>
+              <h3 class="text-danger">*</h3>
+              <button class="btn btn-danger">Delete</button>
+            </div>
+            <div class="card-body">
+              <textarea
+                class="form-control"
+                name="answers[2][value]"
+                required=""
+                cols="30"
+                rows="10"
+                placeholder="Input your answer"
+              ></textarea>
+            </div>
+          </div>
+          <div class="card mb-4 py-2">
+            <div class="card-header d-flex justify-content-between">
+              <h4>Date</h4>
+              <button class="btn btn-danger">Delete</button>
+            </div>
+            <div class="card-body">
+              <input
+                class="form-control"
+                type="date"
+                name="answers[3][value]"
+              />
+            </div>
+          </div>
+          <div class="card mb-4 py-2">
+            <div class="card-header d-flex justify-content-between">
+              <h4>Multiple choice</h4>
+              <h3 class="text-danger">*</h3>
+              <button class="btn btn-danger">Delete</button>
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <label class="form-check-label"
+                    ><input
+                      class="form-check-input me-2"
+                      name="answers[4][value]"
+                      required=""
+                      type="radio"
+                      value="Choice 1"
+                    />Choice 1</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <label class="form-check-label"
+                    ><input
+                      class="form-check-input me-2"
+                      name="answers[4][value]"
+                      required=""
+                      type="radio"
+                      value="Choice 2"
+                    />Choice 2</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <label class="form-check-label"
+                    ><input
+                      class="form-check-input me-2"
+                      name="answers[4][value]"
+                      required=""
+                      type="radio"
+                      value="Choice 3"
+                    />Choice 3</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <label class="form-check-label"
+                    ><input
+                      class="form-check-input me-2"
+                      name="answers[4][value]"
+                      required=""
+                      type="radio"
+                      value="Choice 4"
+                    />Choice 4</label
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card mb-4 py-2">
+            <div class="card-header d-flex justify-content-between">
+              <h4>Dropdown</h4>
+              <h3 class="text-danger">*</h3>
+              <button class="btn btn-danger">Delete</button>
+            </div>
+            <div class="card-body">
+              <select class="form-select" name="answers[5][value]" required="">
+                <option value="Choice 1">Choice 1</option>
+                <option value="Choice 2">Choice 2</option>
+                <option value="Choice 3">Choice 3</option>
+              </select>
+            </div>
+          </div>
+          <div class="card mb-4 py-2">
+            <div class="card-header d-flex justify-content-between">
+              <h4>Checkboxes</h4>
+              <h3 class="text-danger">*</h3>
+              <button class="btn btn-danger">Delete</button>
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <input type="hidden" name="answers[6][value]" value="" />
+                <li class="list-group-item">
+                  <input
+                    id="Check 106"
+                    type="checkbox"
+                    class="form-check-input"
+                    value="Check 1"
+                  /><label for="Check 106" class="form-check-label ms-2"
+                    >Check 1</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    id="Check 216"
+                    type="checkbox"
+                    class="form-check-input"
+                    value="Check 2"
+                  /><label for="Check 216" class="form-check-label ms-2"
+                    >Check 2</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    id="Check 326"
+                    type="checkbox"
+                    class="form-check-input"
+                    value="Check 3"
+                  /><label for="Check 326" class="form-check-label ms-2"
+                    >Check 3</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    id="Check 436"
+                    type="checkbox"
+                    class="form-check-input"
+                    value="Check 4"
+                  /><label for="Check 436" class="form-check-label ms-2"
+                    >Check 4</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    id="Check 546"
+                    type="checkbox"
+                    class="form-check-input"
+                    value="Check 5"
+                  /><label for="Check 546" class="form-check-label ms-2"
+                    >Check 5</label
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
